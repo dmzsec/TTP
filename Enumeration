@@ -1,0 +1,45 @@
+HTTP/HTTPS TCP 80/443
+
+Dirbuster
+root@kali:~/Pentesting# dirb http://172.16.136.158 /usr/share/dirb/wordlists/common.txt
+
+Nikto
+root@kali:~/Pentesting# nikto -h 172.16.136.158
+
+Manual Browsing
+1.  Look for injectable form fields
+2.  Look for login types (HTTP Basic, Digest, NTLM)
+3.  Capture Request and responses with Burp or ZAP
+4.  View source code for all pages for comments and clues
+
+
+SMB TCP 139/445
+
+root@kali:~/Pentesting# enum4linux -a 172.16.136.158
+
+
+FTP TCP 20/21
+
+1. Attempt anonymous login
+
+root@kali:~/Pentesting# ftp
+ftp> open 172.16.136.158
+Connected to 172.16.136.158.
+220 Microsoft FTP Service
+Name (172.16.136.158:root): anonymous
+331 Anonymous access allowed, send identity (e-mail name) as password.
+Password:
+230 Anonymous user logged in.
+Remote system type is Windows_NT.
+ftp> 
+
+2. Try credentials found in HTTP/HTTPS enumeration
+
+
+SMTP TCP/25
+
+Enumerate users
+
+root@kali:~/Pentesting# smtp-user-enum -M VRFY -U /usr/share/wordlists/metasploit/unix_users.txt -t 172.16.136.158
+
+root@kali:~/Pentesting# nmap --script smtp-enum-users.nse 172.16.136.158
