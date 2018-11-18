@@ -1,0 +1,31 @@
+1.  Scan for hosts with NetDiscover
+
+    root@kali:~/Pentesting# netdiscover -i eth1 -r 172.16.136.0/24
+
+    Currently scanning: Finished!   |   Screen View: Unique Hosts                                                                                    
+                                                                                                                                                  
+    4 Captured ARP Req/Rep packets, from 4 hosts.   Total size: 240                                                                                  
+    _____________________________________________________________________________
+      IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+    -----------------------------------------------------------------------------
+    172.16.136.1    00:50:56:c0:00:01      1      60  Unknown vendor                                                                                 
+    172.16.136.156  00:0c:29:a1:45:b9      1      60  Unknown vendor                                                                                 
+    172.16.136.158  00:0c:29:f4:cc:cd      1      60  Unknown vendor                                                                                 
+    172.16.136.254  00:50:56:fe:7f:f6      1      60  Unknown vendor  
+    
+
+2. Quick NMAP Scan (safe scripts, service version, verbose)
+
+  root@kali:~/Pentesting/# nmap -sC -sV -vv -oA quickscan 172.16.136.158
+
+
+3. Quick NMAP Scan UDP (safe scripts, service version, verbose, UDP)
+
+  root@kali:~/Pentesting/# nmap -sC -sV -vv -oA quick 172.16.136.15
+  
+
+4. Full NMAP Scan (safe scripts, service version, all ports, verbose)
+
+  root@kali:/Pentesting/kioptrix2014# nmap -sC -sV -p- -vv -oA full 172.16.136.147
+
+
