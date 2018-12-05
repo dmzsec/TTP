@@ -15,7 +15,7 @@ try:
     for string in buffer:
         print "Fuzzing with %s bytes" % len(string)
         s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        connect=s.connect(('192.168.30.111',4455))
+        connect=s.connect(('ip_address',port))
         s.recv(1024)
         s.send(string + '\r\n')
         s.close()
@@ -30,9 +30,9 @@ except:
 import socket
 
 # Server Address
-server = 172.16.136.158
+server = ip_address
 # Server Port
-port = 110
+port = app_port
 
 buflen = 3000
 # Fuzzing Strings
