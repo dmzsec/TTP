@@ -1,0 +1,14 @@
+Files with Passwords (clear text or base64 encoded)
+  C:\unattend.txt
+  C:\sysprep.inf
+  C:\sysprep\sysprep.xml (base64)
+  
+  findstr /si password*.txt | *.xml | *.ini
+  vnc.ini ultravnc.ini
+  
+Registry Keys
+  reg query "HKLM\SOFTWARE\Microsoft\WindowsNT\Currentversion\Winlogon"
+  reg query "HKCU\SOFTWARE\ORL\WinVNC3\Password"
+  reg query HKLM /f password /t REG_SZ /s | clip
+  reg query HKCU /f password /t REG_SZ /s | clip
+  
