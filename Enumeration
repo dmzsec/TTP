@@ -1,5 +1,8 @@
 HTTP/HTTPS TCP 80/443
 
+Gobuster
+root@kali:~/Pentesting# gobuster -u 172.16.136.158 -l -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php -t 20
+
 Dirbuster
 root@kali:~/Pentesting# dirb http://172.16.136.158 /usr/share/dirb/wordlists/common.txt
 
