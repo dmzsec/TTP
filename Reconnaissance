@@ -16,16 +16,11 @@
 
 2. Quick NMAP Scan (safe scripts, service version, verbose)
 
-  root@kali:~/Pentesting/# nmap -sC -sV -vv -oA quickscan 172.16.136.158
-
-
-3. Quick NMAP Scan UDP (safe scripts, service version, verbose, UDP)
-
-  root@kali:~/Pentesting/# nmap -sC -sV -vv -oA quick 172.16.136.15
+  root@kali:~/Pentesting/# nmap -sC -sV -vv -oA initial 172.16.136.15
   
 
-4. Full NMAP Scan (safe scripts, service version, all ports, verbose)
+3. Full NMAP Scan (all ports and T4 timing to speed it up)
 
-  root@kali:/Pentesting/kioptrix2014# nmap -sC -sV -p- -vv -oA full 172.16.136.147
+  root@kali:/Pentesting/kioptrix2014# nmap -p- -T4 -oA full 172.16.136.147
 
 
