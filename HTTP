@@ -1,0 +1,27 @@
+Enumeration:
+
+nmap -v --script http-enum 192.168.174.129
+
+nikto -h 192.168.174.129
+
+dirb 192.168.56.129 /usr/share/Seclists/common.txt
+gobuster 
+
+
+Browsing:
+
+Manually browse to all pages and view source looking for comments and configuration information
+Run Cewl on pages to generate lists of usernames/passwords for brute forcing
+Proxy all login pages through Burp or ZAP and check Authentication / Session information
+
+
+SQLi:
+
+
+LFI/RFI:
+
+
+Base64 Decode:
+
+root@kali:~# cat encoded.txt | base64 --decode
+root@kali:~# cat encoded.txt | base64 --decode > out.png
