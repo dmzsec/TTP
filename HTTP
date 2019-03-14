@@ -25,3 +25,8 @@ Base64 Decode:
 
 root@kali:~# cat encoded.txt | base64 --decode
 root@kali:~# cat encoded.txt | base64 --decode > out.png
+
+
+OWASP Reporting:  https://www.owasp.org/index.php/Reporting
+
+Web Testing Guide: https://www.owasp.org/index.php/Web_Application_Penetration_Testing
