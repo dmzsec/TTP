@@ -30,3 +30,8 @@ root@kali:~# cat encoded.txt | base64 --decode > out.png
 OWASP Reporting:  https://www.owasp.org/index.php/Reporting
 
 Web Testing Guide: https://www.owasp.org/index.php/Web_Application_Penetration_Testing
+
+
+HTTP Content-Type Headers:
+
+https://stackoverflow.com/questions/23714383/what-are-all-the-possible-values-for-http-content-type-header
