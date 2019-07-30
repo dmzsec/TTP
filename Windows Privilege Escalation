@@ -1,3 +1,29 @@
+Get Execution Policy
+  PS C:\Users\username> Get-ExecutionPolicy -List | Format-Table -AutoSize
+          Scope ExecutionPolicy
+        ----- ---------------
+MachinePolicy       Undefined
+   UserPolicy       Undefined
+      Process       Undefined
+  CurrentUser       Undefined
+ LocalMachine      Restricted
+ 
+ Set Execution Policy
+ 
+  PS C:\Users\username> Set-ExecutionPolicy Unrestricted
+  
+  or
+  
+  PS C:\Users\username> Set-ExecutionPolicy Bypass
+  
+Get Firewall Policy
+
+  PS C:\Users\username> Get-NetFirewallProfile
+
+Set Firewall Policy to Disabled
+
+  PS C:\Users\username> Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled false
+
 Files with Passwords (clear text or base64 encoded)
   C:\unattend.txt
   C:\sysprep.inf
